@@ -1,4 +1,4 @@
-workspace = { members = ["Chrono", "Log", "Rand", "Tracing"] }
+workspace = { members = ["Chrono", "Log", "Rand", "Tracing", "test-future"] }
 [package]
 name = "grasp-crate"
 version = "0.1.0"
