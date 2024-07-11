@@ -49,33 +49,44 @@ fn main() {
 
     // println!("上海时间：{}", shanghai_now);
 
-    // date_str 为k8s中资源执行完成时间的格式
-    let date_str = "2024-07-02T12:34:56Z";
-    let datetime: DateTime<Utc> = date_str.parse().expect("Failed to parse date string");
-    println!("Parsed datetime: {}", datetime);
+    // // date_str 为k8s中资源执行完成时间的格式
+    // let date_str = "2024-07-02T12:34:56Z";
+    // let datetime: DateTime<Utc> = date_str.parse().expect("Failed to parse date string");
+    // println!("Parsed datetime: {}", datetime);
 
-    // duration_str 模拟从资源中取出的ttl 毫秒形式
-    let duration_str = "1000 * 60";
-    let cleaned_duration_str: String = duration_str.chars().filter(|c| !c.is_whitespace()).collect();
-    println!("{}",cleaned_duration_str);
+    // // duration_str 模拟从资源中取出的ttl 毫秒形式
+    // let duration_str = "1000 * 60";
+    // let cleaned_duration_str: String = duration_str.chars().filter(|c| !c.is_whitespace()).collect();
+    // println!("{}",cleaned_duration_str);
 
-    let millis: i64 = cleaned_duration_str.split('*')
-        .map(|s| s.parse::<i64>().expect("Failed to parse duration component"))
-        .product();
-    let duration = Duration::milliseconds(millis);
+    // let millis: i64 = cleaned_duration_str.split('*')
+    //     .map(|s| s.parse::<i64>().expect("Failed to parse duration component"))
+    //     .product();
+    // let duration = Duration::milliseconds(millis);
 
-    let expired_time = datetime + duration;
+    // let expired_time = datetime + duration;
 
-    println!("{}",expired_time);
+    // println!("{}",expired_time);
 
-    // 当前时间
-    let now = Utc::now();
+    // // 当前时间
+    // let now = Utc::now();
 
-    if expired_time - now <= Duration::days(3) {
-        println!("send mail")
-    } else if expired_time < now {
-        println!("delete")
-    }
+    // if expired_time - now <= Duration::days(3) {
+    //     println!("send mail")
+    // } else if expired_time < now {
+    //     println!("delete")
+    // }
+
+    // 测试两种方法转化
+    let rfc3339_str = "2024-07-08T14:30:15Z";
+
+    let datetime1: DateTime<Utc> = rfc3339_str.parse().expect("Failed to parse datetime");
+
+    let datetime2: DateTime<Utc> = rfc3339_str.parse().expect("Failed to parse date string");
+
+    println!("第一种方法：{}",datetime1);
+    println!("第二种方法：{}",datetime2);
+
 
 
 }
